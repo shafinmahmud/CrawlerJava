@@ -25,14 +25,9 @@ public class DataWriter {
 
             FileOutputStream fileOutputStream = new FileOutputStream(filePath);
             try (OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "UTF8")) {
+                textData = textData.replaceAll("\n", System.lineSeparator());
                 outputStreamWriter.write(textData);
             }
-
-            //for the system out purpose
-//            Writer out = new BufferedWriter(outputStreamWriter);
-//            out.append(textData).append("\r\n");
-//            out.flush();
-//            out.close();
 
             return true;
 

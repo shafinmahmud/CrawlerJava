@@ -31,11 +31,11 @@ public class Controller {
         Scanner in = new Scanner(System.in);
         //System.out.println("Enter the domain name : ");
         //String domain = in.nextLine();
-        String domain = "http://www.prothom-alo.com/life-style/article/496705/%E0%A6%B8%E0%A6%BE%E0%A6%9C%E0%A7%87-%E0%A6%AC%E0%A7%88%E0%A6%B6%E0%A6%BE%E0%A6%96";
+        String domain = "http://bangla.bdnews24.com/";
 
        // System.out.println("Enter a seed : ");
        // String seed = in.nextLine();
-        String seed = "http://www.prothom-alo.com/life-style/article/496705/%E0%A6%B8%E0%A6%BE%E0%A6%9C%E0%A7%87-%E0%A6%AC%E0%A7%88%E0%A6%B6%E0%A6%BE%E0%A6%96";
+        String seed = "http://bangla.bdnews24.com/world/article952145.bdnews";
 
         System.out.println("Maximum pages ?  ");
         String maxPage = in.nextLine();

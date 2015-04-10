@@ -80,6 +80,7 @@ public class CrawlerLogic extends WebCrawler {
                     String html = htmlParseData.getHtml();
                     logger.debug("Html length: {}", html.length());
                     String paragraph = HtmlToParagraph.htmlToParagraphText(html);
+                    paragraph = html;
                     DataWriter.writeDataToFile(RuleVariables.getFolderPath() + title + "html.txt", paragraph);
                     break;
                 }
