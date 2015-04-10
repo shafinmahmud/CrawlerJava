@@ -29,13 +29,13 @@ public class Controller {
         }
 
         Scanner in = new Scanner(System.in);
-        //System.out.println("Enter the domain name : ");
-        //String domain = in.nextLine();
-        String domain = "http://bangla.bdnews24.com/";
+        System.out.println("Enter the domain name : ");
+        String domain = in.nextLine();
+        //String domain = "http://www.prothom-alo.com/international";
 
-       // System.out.println("Enter a seed : ");
-       // String seed = in.nextLine();
-        String seed = "http://bangla.bdnews24.com/world/article952145.bdnews";
+        System.out.println("Enter a seed : ");
+       String seed = in.nextLine();
+       // String seed = "http://www.prothom-alo.com/international";
 
         System.out.println("Maximum pages ?  ");
         String maxPage = in.nextLine();
@@ -44,7 +44,7 @@ public class Controller {
         String folder = "D:\\crawl\\";
         RuleVariables.setFolderPath(folder);
 
-        System.out.println("what you want?\n1.Text\n2.HTML");
+        System.out.println("what you want?\n1.Text\t2.HTML\t3.Paragraph");
         String parsingType = in.nextLine();
         RuleVariables.setTextParsingType(Integer.parseInt(parsingType));
 
