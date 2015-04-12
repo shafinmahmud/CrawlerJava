@@ -4,6 +4,7 @@ package me.shafin.crawlerjava;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.jsoup.Jsoup;
 
 /**
  *
@@ -14,9 +15,9 @@ public class HtmlToParagraph {
     public static String htmlToParagraphText(String html) {
         String paragraphSubString = "";
 
-        //DataWriter.writeDataToFile("D:\\test.text", html);
         int startIndex = 0;
         List<Integer> tagArray = new ArrayList<>();
+
         int i = 0;
         while (i < html.length() - 4) {
             if (html.charAt(i) == '<') {
@@ -30,6 +31,7 @@ public class HtmlToParagraph {
 
                         while (!endFlag) {
                             if (html.charAt(++i) == '<') {
+
                                 if (html.charAt(++i) == '/') {
                                     if (html.charAt(++i) == 'p') {
                                         if (html.charAt(++i) == '>') {
@@ -40,6 +42,7 @@ public class HtmlToParagraph {
                                         }
                                     }
                                 }
+
                             }
                         }
 
@@ -55,15 +58,15 @@ public class HtmlToParagraph {
             int start = tagArray.get(i);
             int end = tagArray.get(i + 1);
             String temp = html.substring(start, end);
-            temp = temp.replaceAll("<br/>", "\n");
-            temp = temp.replaceAll("<strong>", "\n");
-            temp = temp.replaceAll("</strong>", "\n");
             paragraphSubString = paragraphSubString.concat(temp + "\n\n");
-            //System.out.println("START " + start + " END " + end);
-            //System.out.println(temp);
         }
-       // System.out.println(paragraphSubString);
+
+        paragraphSubString = paragraphSubString.replaceAll("(?i)<br[^>]*>", "br2n");
+        paragraphSubString = Jsoup.parse(paragraphSubString).text();
+        paragraphSubString = paragraphSubString.replaceAll("\"+comment+\"", "");
+        paragraphSubString = paragraphSubString.replaceAll("br2n", "\n");
 
         return paragraphSubString;
     }
+
 }
