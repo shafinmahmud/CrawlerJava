@@ -22,7 +22,13 @@ public class HtmlToParagraph {
         while (i < html.length() - 4) {
             if (html.charAt(i) == '<') {
                 if (html.charAt(++i) == 'p') {
-                    if (html.charAt(++i) == '>') {
+                    boolean startTagTailFound = false;
+                    while (!startTagTailFound) {
+                        if (html.charAt(++i) == '>') {
+                            startTagTailFound = true;
+                        }
+                    }
+                    if (startTagTailFound) {
                         //System.out.println("START "+i);
                         startIndex = i + 1;
                         tagArray.add(startIndex);
