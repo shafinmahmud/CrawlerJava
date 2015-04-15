@@ -2,8 +2,12 @@
  */
 package me.shafin.crawlerjava;
 
+import de.l3s.boilerpipe.BoilerpipeProcessingException;
+import de.l3s.boilerpipe.extractors.ArticleExtractor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jsoup.Jsoup;
 
 /**
@@ -12,7 +16,16 @@ import org.jsoup.Jsoup;
  */
 public class HtmlToParagraph {
 
-    public static String htmlToParagraphText(String html) {
+    public static String htmlToParagraphUsingBoilerPipe(String html) {
+        try {
+            return ArticleExtractor.INSTANCE.getText(html);
+        } catch (BoilerpipeProcessingException ex) {
+            Logger.getLogger(HtmlToParagraph.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+
+    public static String htmlToParagraphUsingPtag(String html) {
         String paragraphSubString = "";
 
         int startIndex = 0;

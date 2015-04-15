@@ -44,7 +44,7 @@ public class Controller {
         String folder = "D:\\crawl\\";
         RuleVariables.setFolderPath(folder);
 
-        System.out.println("what you want?\n1.Text\t2.HTML\t3.Paragraph");
+        System.out.println("what you want?\n1.Text\t2.HTML\t3.Paragraph\t4.BoilerPipe article");
         String parsingType = in.nextLine();
         RuleVariables.setTextParsingType(Integer.parseInt(parsingType));
 
