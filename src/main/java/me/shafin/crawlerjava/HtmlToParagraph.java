@@ -3,12 +3,18 @@
 package me.shafin.crawlerjava;
 
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
+import de.l3s.boilerpipe.document.TextDocument;
 import de.l3s.boilerpipe.extractors.ArticleExtractor;
+import de.l3s.boilerpipe.sax.BoilerpipeSAXInput;
+import de.l3s.boilerpipe.sax.HTMLHighlighter;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jsoup.Jsoup;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -16,15 +22,40 @@ import org.jsoup.Jsoup;
  */
 public class HtmlToParagraph {
 
+    public static String htmlToHtmlFragmantUsibgBoilerPipe(String html) {
+        StringBuilder bf = new StringBuilder();
+        try {
+            ArticleExtractor extractor = ArticleExtractor.INSTANCE;
+            InputSource is = new InputSource(new StringReader(html));
+            HTMLHighlighter hh = HTMLHighlighter.newExtractingInstance();
+
+            final TextDocument doc = new BoilerpipeSAXInput(is).getTextDocument();
+            extractor.process(doc);
+
+            bf.append("<meta http-equiv=\"Content-Type\" content=\"text-html; charset=utf-8\" />");
+            bf.append(hh.process(doc, html));
+
+        } catch (BoilerpipeProcessingException | SAXException ex) {
+            Logger.getLogger(HtmlToParagraph.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bf.toString();
+    }
+
+    
+    
     public static String htmlToParagraphUsingBoilerPipe(String html) {
         try {
             return ArticleExtractor.INSTANCE.getText(html);
+
         } catch (BoilerpipeProcessingException ex) {
-            Logger.getLogger(HtmlToParagraph.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HtmlToParagraph.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return "";
     }
 
+    
+    
     public static String htmlToParagraphUsingPtag(String html) {
         String paragraphSubString = "";
 
