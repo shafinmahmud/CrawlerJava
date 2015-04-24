@@ -7,7 +7,10 @@ import de.l3s.boilerpipe.document.TextDocument;
 import de.l3s.boilerpipe.extractors.ArticleExtractor;
 import de.l3s.boilerpipe.sax.BoilerpipeSAXInput;
 import de.l3s.boilerpipe.sax.HTMLHighlighter;
+import java.io.IOException;
 import java.io.StringReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -43,13 +46,21 @@ public class HtmlToParagraph {
 
     
     
-    public static String htmlToParagraphUsingBoilerPipe(String html) {
+    public static String htmlToParagraphUsingBoilerPipe(String pageUrl) {
         try {
-            return ArticleExtractor.INSTANCE.getText(html);
+            URL url = new URL(pageUrl);
+            
+            InputSource is = new InputSource();
+            is.setEncoding("UTF-8");
+            is.setByteStream(url.openStream());
+            
+            return ArticleExtractor.INSTANCE.getText(is);
 
-        } catch (BoilerpipeProcessingException ex) {
+        } catch (BoilerpipeProcessingException | MalformedURLException ex) {
             Logger.getLogger(HtmlToParagraph.class
                     .getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HtmlToParagraph.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "";
     }
