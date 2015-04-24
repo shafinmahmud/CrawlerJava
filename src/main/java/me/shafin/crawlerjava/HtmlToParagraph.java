@@ -2,9 +2,11 @@
  */
 package me.shafin.crawlerjava;
 
+import de.l3s.boilerpipe.BoilerpipeExtractor;
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.l3s.boilerpipe.document.TextDocument;
 import de.l3s.boilerpipe.extractors.ArticleExtractor;
+import de.l3s.boilerpipe.extractors.CommonExtractors;
 import de.l3s.boilerpipe.sax.BoilerpipeSAXInput;
 import de.l3s.boilerpipe.sax.HTMLHighlighter;
 import java.io.IOException;
@@ -49,12 +51,13 @@ public class HtmlToParagraph {
     public static String htmlToParagraphUsingBoilerPipe(String pageUrl) {
         try {
             URL url = new URL(pageUrl);
+            BoilerpipeExtractor extractor = CommonExtractors.ARTICLE_EXTRACTOR;
             
             InputSource is = new InputSource();
             is.setEncoding("UTF-8");
             is.setByteStream(url.openStream());
             
-            return ArticleExtractor.INSTANCE.getText(is);
+            return extractor.getText(is);
 
         } catch (BoilerpipeProcessingException | MalformedURLException ex) {
             Logger.getLogger(HtmlToParagraph.class

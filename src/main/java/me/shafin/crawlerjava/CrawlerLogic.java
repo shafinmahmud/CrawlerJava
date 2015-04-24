@@ -11,6 +11,7 @@ import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
+import me.shafin.modifier.TagOutputText;
 
 /**
  *
@@ -93,6 +94,7 @@ public class CrawlerLogic extends WebCrawler {
                 case 4: {
                     String pageUrl = page.getWebURL().getURL();
                     String paragraph = HtmlToParagraph.htmlToParagraphUsingBoilerPipe(pageUrl);
+                    paragraph = TagOutputText.tagIncompleteSentence(paragraph);
                     DataWriter.writeDataToFile(RuleVariables.getFolderPath() + title + ".txt", paragraph);
                     break;
                 }
