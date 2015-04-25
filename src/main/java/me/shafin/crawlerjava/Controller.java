@@ -41,7 +41,7 @@ public class Controller {
         String maxPage = in.nextLine();
 
         //System.out.println("where to store ?  ");
-        String folder = "D:\\crawl\\";
+        String folder = "D:\\crawl\\BP\\";
         RuleVariables.setFolderPath(folder);
 
         System.out.println("what you want?\n1.Text\t2.HTML\t3.Paragraph\t4.BoilerPipe article");
@@ -76,7 +76,7 @@ public class Controller {
          * You can set the maximum crawl depth here. The default value is -1 for
          * unlimited depth
          */
-        config.setMaxDepthOfCrawling(2);
+        config.setMaxDepthOfCrawling(-1);
 
         /*
          * You can set the maximum number of pages to crawl. The default value

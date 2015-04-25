@@ -17,7 +17,7 @@ public class TagOutputText {
 //            System.out.println((int)s.charAt(0));
 //            System.out.println(s.length()+" -- "+s.trim().length());
             if(!(s.contains("।")||s.contains("?")||s.contains("!"))){
-                taggedText = taggedText.concat("<trash>"+s+"</trash>"+endOfLine);
+                taggedText = taggedText.concat("<t>"+s+"</t>"+endOfLine);
             }else{
                 taggedText = taggedText.concat(s+endOfLine);
             }
