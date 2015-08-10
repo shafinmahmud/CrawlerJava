@@ -34,14 +34,14 @@ public class Controller {
         //String domain = "http://www.prothom-alo.com/international";
 
         System.out.println("Enter a seed : ");
-       String seed = in.nextLine();
-       // String seed = "http://www.prothom-alo.com/international";
+        String seed = in.nextLine();
+        // String seed = "http://www.prothom-alo.com/international";
 
         System.out.println("Maximum pages ?  ");
         String maxPage = in.nextLine();
 
         //System.out.println("where to store ?  ");
-        String folder = "D:\\crawl\\BP\\";
+        String folder = "E:\\crawl\\BP\\";
         RuleVariables.setFolderPath(folder);
 
         System.out.println("what you want?\n1.Text\t2.HTML\t3.Paragraph\t4.BoilerPipe article");
